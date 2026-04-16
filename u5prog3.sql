@@ -1,0 +1,7 @@
+CREATE OR REPLACE TRIGGER trg_emp_delete
+AFTER DELETE ON EMP
+FOR EACH ROW
+BEGIN
+    INSERT INTO EMP_MIRROR VALUES (:OLD.EID, :OLD.EName, :OLD.Deptno, :OLD.Deptname, :OLD.Gender, :OLD.Age, :OLD.BasicSal);
+END;
+/
