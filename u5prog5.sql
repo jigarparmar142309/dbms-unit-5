@@ -1,0 +1,8 @@
+CREATE OR REPLACE TRIGGER trg_restrict_sunday
+BEFORE INSERT OR UPDATE OR DELETE ON EMP
+BEGIN
+    IF TO_CHAR(SYSDATE, 'DY') = 'SUN' THEN
+        RAISE_APPLICATION_ERROR(-20002, 'No operations allowed on Sunday');
+    END IF;
+END;
+/
